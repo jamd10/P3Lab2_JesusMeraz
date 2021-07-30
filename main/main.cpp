@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 				cin >> numero;
 				while(numero.size() != 4){
 					cout<<"¡Debe ingresar un numero de solamente 4 cifras!"<<endl;
-					cout <<"Ingrese un numero de 4 cifras: "<<endl;
+					cout <<"Ingrese de nuevo un numero de 4 cifras: "<<endl;
 					cin >> numero;
 					
 				}
