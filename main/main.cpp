@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <cstring>
+#include <sstream>
 using namespace std;
 int menu();
-void ejercicio1(string);
+void ejercicio1(string, int);
 double ejercicio2(int, int, double);
 int ejercicio3(string, int, int);
 int main(int argc, char** argv) {
@@ -20,7 +22,7 @@ int main(int argc, char** argv) {
 					cin >> numero;
 					
 				}
-				ejercicio1(numero);
+				ejercicio1(numero, 0);
 				break;
 			}
 							
@@ -68,27 +70,38 @@ int menu(){
 	cin>> opcion;
 	return opcion;
 }
-void ejercicio1(string numero_ingresado){
-	 string numero_mayor = "", numero_menor = "";
-    numero_mayor = numero_menor = numero_ingresado;
-    for (int k = 0; k < numero_mayor.size(); k++) {
-        for (int i = 0; i < numero_mayor.size() - 1; i++) {
-            if (numero_mayor[i] < numero_mayor[i + 1]) {
-                char temp = '0';
-                temp = numero_mayor[i];
-                numero_mayor[i] = numero_mayor[i + 1];
-                numero_mayor[i + 1] = temp;
-            }//fin if mayor
-            if (numero_menor[i] > numero_menor[i + 1]) {
-                char temp = '0';
-                temp = numero_menor[i];
-                numero_menor[i] = numero_menor[i + 1];
-                numero_menor[i + 1] = temp;
-            }//fin if menor
-        }// fin for j
-    }// fin for k
-    cout << "mayor " << numero_mayor << endl;
-    cout << "menor " << numero_menor << endl;
+void ejercicio1(string numero_ingresado, int contador) {//  
+    if (contador < 7 && numero_ingresado != "6174") {
+        string numero_mayor = "", numero_menor = "";
+        numero_mayor = numero_menor = numero_ingresado;
+        for (int k = 0; k < numero_mayor.size(); k++) {
+            for (int i = 0; i < numero_mayor.size() - 1; i++) {
+                if (numero_mayor[i] < numero_mayor[i + 1]) {
+                    char temp = '0';
+                    temp = numero_mayor[i];
+                    numero_mayor[i] = numero_mayor[i + 1];
+                    numero_mayor[i + 1] = temp;
+                }//fin if mayor
+                if (numero_menor[i] > numero_menor[i + 1]) {
+                    char temp = '0';
+                    temp = numero_menor[i];
+                    numero_menor[i] = numero_menor[i + 1];
+                    numero_menor[i + 1] = temp;
+                }//fin if menor
+            }// fin for j
+        }// fin for k
+        int mayor = 0, menor = 0;
+        stringstream ss1, ss2;
+        ss1 << numero_mayor;
+        ss1 >> mayor;
+        ss2 << numero_menor;
+        ss2 >> menor;
+        int resta = mayor - menor;
+        string str;
+        str = to_string(resta);
+        cout << contador + 1 <<". " << numero_mayor << " - " << numero_menor << " = " << str << endl;
+        ejercicio1(str, contador + 1);
+    }//fin if
 }
 double ejercicio2(int n, int x, double resultado) {
     // Variables Auxiliares
